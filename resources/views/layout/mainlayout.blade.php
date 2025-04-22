@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-@if(!Route::is(['layout-dark']))  
+@if(!Route::is(['layout-dark']))
 <html lang="en">
 @endif
- @if(Route::is(['layout-dark']))   
+ @if(Route::is(['layout-dark']))
 
 <html lang="en" data-theme="dark">
- @endif   
+ @endif
 
 <head>
     <meta charset="utf-8">
@@ -14,7 +14,7 @@
     <meta name="keywords" content="admin, estimates, bootstrap, business, html5, responsive, Projects">
     <meta name="author" content="Dreams technologies - Bootstrap Admin Template">
     <meta name="robots" content="noindex, nofollow">
-    <title>Preskool Admin Template</title>
+    <title>COYO Kid</title>
 
     @include('layout.partials.head')
 </head>
@@ -149,8 +149,8 @@
     @yield('content')
 </div>
 <!-- /Main Wrapper -->
-
 @include('layout.partials.footer-scripts')
+@yield('scripts')
 </body>
 
 </html>

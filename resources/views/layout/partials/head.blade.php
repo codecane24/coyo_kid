@@ -1,13 +1,14 @@
 <!-- Favicon -->
-<link rel="shortcut icon" type="image/x-icon" href="{{ URL::asset('build/img/favicon.png') }}">
+<link rel="shortcut icon" type="image/x-icon" href="{{ asset('build/img/favicon.png') }}">
 
+<base href="/">
 @if (!Route::is(['layout-rtl']))
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="{{ url('build/css/bootstrap.min.css') }}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ asset('build/css/bootstrap.min.css') }}">
 @endif
 @if (Route::is(['layout-rtl']))
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="{{ url('build/css/bootstrap.rtl.min.css')}}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ asset('build/css/bootstrap.rtl.min.css') }}">
 @endif
 @if (Route::is([
         'form-fileupload',
@@ -122,18 +123,17 @@
         'contact-messages',
         'fees-report',
         'teacher-dashboard',
-         'parent-dashboard',
-         'chat',
-         'call-history'
-         
+        'parent-dashboard',
+        'chat',
+        'call-history',
     ]))
     <!-- Datatable CSS -->
-    <link rel="stylesheet" href="{{ url('build/css/dataTables.bootstrap5.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/css/dataTables.bootstrap5.min.css') }}">
 @endif
 @if (Route::is(['chart-c3']))
- <!-- ChartC3 CSS -->
- <link rel="stylesheet" href="{{url('build/plugins/c3-chart/c3.min.css')}}">
- @endif
+    <!-- ChartC3 CSS -->
+    <link rel="stylesheet" href="{{ asset('build/plugins/c3-chart/c3.min.css') }}">
+@endif
 @if (
     !Route::is([
         'ui-ribbon',
@@ -171,86 +171,128 @@
             'call-history',
             'edit-invoice',
             'video-call',
-            'chat'
+            'chat',
         ]))
         <!-- animation CSS -->
-        <link rel="stylesheet" href="{{ url('build/css/animate.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/css/animate.css') }}">
     @endif
 
 
     <!-- Feathericon CSS -->
-    <link rel="stylesheet" href="{{ url('build/css/feather.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/css/feather.css') }}">
 @endif
 
 
 
-@if (Route::is(['call','video-call','index','/','layout-default','layout-mini','layout-box','layout-dark','layout-rtl']))
+@if (Route::is([
+        'call',
+        'video-call',
+        'index',
+        '/',
+        'layout-default',
+        'layout-mini',
+        'layout-box',
+        'layout-dark',
+        'layout-rtl',
+    ]))
     <!-- Owl Carousel CSS -->
-    @if (Route::is(['call','todo','video-call','file-manager','index','/','layout-default','layout-mini','layout-box','layout-dark','layout-rtl']))
-        <link rel="stylesheet" href="{{ url('build/plugins/owlcarousel/owl.carousel.min.css') }}">
+    @if (Route::is([
+            'call',
+            'todo',
+            'video-call',
+            'file-manager',
+            'index',
+            '/',
+            'layout-default',
+            'layout-mini',
+            'layout-box',
+            'layout-dark',
+            'layout-rtl',
+        ]))
+        <link rel="stylesheet" href="{{ asset('build/plugins/owlcarousel/owl.carousel.min.css') }}">
     @endif
-    <link rel="stylesheet" href="{{ url('build/plugins/owlcarousel/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/plugins/owlcarousel/owl.theme.default.min.css') }}">
 @endif
 
-@if (Route::is(['notes', 'file-manager', 'student-time-table', 'routine-teachers', 'class-time-table','todo','teacher-dashboard','student-dashboard','parent-dashboard']))
-    <link rel="stylesheet" href="{{ url('build/css/owl.carousel.min.css') }}">
+@if (Route::is([
+        'notes',
+        'file-manager',
+        'student-time-table',
+        'routine-teachers',
+        'class-time-table',
+        'todo',
+        'teacher-dashboard',
+        'student-dashboard',
+        'parent-dashboard',
+    ]))
+    <link rel="stylesheet" href="{{ asset('build/css/owl.carousel.min.css') }}">
 @endif
 
 @if (Route::is(['file-manager']))
-    <link rel="stylesheet" href="{{ url('/build/css/plyr.css') }}">
+    <link rel="stylesheet" href="{{ asset('/build/css/plyr.css') }}">
 @endif
 
 @if (Route::is(['ui-clipboard', 'ui-drag-drop']))
     <!-- Dragula CSS -->
-    <link rel="stylesheet" href="{{ url('build/plugins/dragula/css/dragula.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/plugins/dragula/css/dragula.min.css') }}">
 @endif
 
 <!-- Tabler Icon CSS -->
-<link rel="stylesheet" href="{{ url('build/plugins/tabler-icons/tabler-icons.css') }}">
+<link rel="stylesheet" href="{{ asset('build/plugins/tabler-icons/tabler-icons.css') }}">
 
 @if (Route::is(['ui-lightbox']))
     <!-- animation CSS -->
-    <link rel="stylesheet" href="{{ url('build/plugins/lightbox/glightbox.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/plugins/lightbox/glightbox.min.css') }}">
 @endif
 
 @if (Route::is(['ui-scrollbar']))
     <!-- Main CSS -->
-    <link rel="stylesheet" href="{{ url('build/plugins/scrollbar/scroll.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/plugins/scrollbar/scroll.min.css') }}">
 @endif
 
 @if (Route::is(['ui-stickynote']))
     <!-- Sticky CSS -->
-    <link rel="stylesheet" href="{{ url('build/plugins/stickynote/sticky.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/plugins/stickynote/sticky.css') }}">
 @endif
 
 @if (Route::is(['chat', 'file-manager', 'notes', 'todo', 'ui-text-editor', 'email-templates']))
     <!-- Summernote CSS -->
-    <link rel="stylesheet" href="{{ url('build/plugins/summernote/summernote-bs4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/plugins/summernote/summernote-bs4.min.css') }}">
 @endif
-@if (Route::is(['blog','blog-categories','blog-comments','blog-tags','add-invoice','edit-invoice','ticket-grid','invoice']))
-<!-- Summernote CSS -->
-<link rel="stylesheet" href="{{ url('build/plugins/summernote/summernote-lite.min.css')}}">
+@if (Route::is([
+        'blog',
+        'blog-categories',
+        'blog-comments',
+        'blog-tags',
+        'add-invoice',
+        'edit-invoice',
+        'ticket-grid',
+        'invoice',
+    ]))
+    <!-- Summernote CSS -->
+    <link rel="stylesheet" href="{{ asset('build/plugins/summernote/summernote-lite.min.css') }}">
 @endif
 <!-- Daterangepikcer CSS -->
-<link rel="stylesheet" href="{{ url('build/plugins/daterangepicker/daterangepicker.css') }}">
+<link rel="stylesheet" href="{{ asset('build/plugins/daterangepicker/daterangepicker.css') }}">
 
 @if (Route::is(['ui-rangeslider']))
     <!-- Rangeslider CSS -->
-    <link rel="stylesheet" href="{{ url('build/plugins/ion-rangeslider/css/ion.rangeSlider.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/plugins/ion-rangeslider/css/ion.rangeSlider.min.css') }}">
 @endif
 
 <!-- Fontawesome CSS -->
-<link rel="stylesheet" href="{{ url('build/plugins/fontawesome/css/fontawesome.min.css') }}">
-<link rel="stylesheet" href="{{ url('build/plugins/fontawesome/css/all.min.css') }}">
+<link rel="stylesheet" href="{{ asset('build/plugins/fontawesome/css/fontawesome.min.css') }}">
+<link rel="stylesheet" href="{{ asset('build/plugins/fontawesome/css/all.min.css') }}">
+
 
 @if (Route::is(['ui-toasts']))
     <!-- Toatr CSS -->
-    <link rel="stylesheet" href="{{ url('build/plugins/toastr/toatr.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/plugins/toastr/toatr.css') }}">
 @endif
 
 @if (Route::is(['icon-flag']))
     <!-- Pe7 CSS -->
-    <link rel="stylesheet" href="{{ url('build/plugins/icons/flags/flags.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/plugins/icons/flags/flags.css') }}">
 @endif
 
 @if (Route::is([
@@ -299,62 +341,62 @@
         'layout-box',
         'layout-dark',
         'invoice',
-        'layout-rtl'
-    
+        'layout-rtl',
     ]))
     <!-- Feather CSS -->
-    <link rel="stylesheet" href="{{ url('build/plugins/icons/feather/feather.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/plugins/icons/feather/feather.css') }}">
 @endif
 
 @if (Route::is(['icon-ionic']))
     <!-- Ionic CSS -->
-    <link rel="stylesheet" href="{{ url('build/plugins/icons/ionic/ionicons.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/plugins/icons/ionic/ionicons.css') }}">
 @endif
 
 @if (Route::is(['icon-material']))
     <!-- Material CSS -->
-    <link rel="stylesheet" href="{{ url('build/plugins/material/materialdesignicons.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/plugins/material/materialdesignicons.css') }}">
 @endif
 
 @if (Route::is(['icon-pe7']))
     <!-- Pe7 CSS -->
-    <link rel="stylesheet" href="{{ url('build/plugins/icons/pe7/pe-icon-7.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/plugins/icons/pe7/pe-icon-7.css') }}">
 @endif
 
 @if (Route::is(['icon-simpleline']))
     <!-- Material CSS -->
-    <link rel="stylesheet" href="{{ url('build/plugins/simpleline/simple-line-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/plugins/simpleline/simple-line-icons.css') }}">
 @endif
 
 @if (Route::is(['icon-themify']))
     <!-- Pe7 CSS -->
-    <link rel="stylesheet" href="{{ url('build/plugins/icons/themify/themify.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/plugins/icons/themify/themify.css') }}">
 @endif
 
 @if (Route::is(['icon-typicon']))
     <!-- Pe7 CSS -->
-    <link rel="stylesheet" href="{{ url('build/plugins/icons/typicons/typicons.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/plugins/icons/typicons/typicons.css') }}">
 @endif
 
 @if (!Route::is(['students-active', 'students-inactive', 'student-details']))
     <!-- Select2 CSS -->
-    <link rel="stylesheet" href="{{ url('build/plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/plugins/select2/css/select2.min.css') }}">
 @endif
 
 @if (Route::is(['form-wizard']))
     <!-- Wizard CSS -->
-    <link rel="stylesheet" href="{{ url('build/plugins/twitter-bootstrap-wizard/form-wizard.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/plugins/twitter-bootstrap-wizard/form-wizard.css') }}">
 @endif
 
 @if (Route::is(['icon-weather']))
     <!-- Pe7 CSS -->
-    <link rel="stylesheet" href="{{ url('build/plugins/icons/weather/weathericons.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/plugins/icons/weather/weathericons.css') }}">
 @endif
 
-@if (Route::is(['call', 'call-history', 'video-call', 'chat','call-history','video-call']))
+@if (Route::is(['call', 'call-history', 'video-call', 'chat', 'call-history', 'video-call']))
     <!-- Boxicons CSS -->
-    <link rel="stylesheet" href="{{ url('build/plugins/boxicons/css/boxicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/plugins/boxicons/css/boxicons.min.css') }}">
 @endif
+
 
 @if (Route::is([
         'chat',
@@ -417,31 +459,43 @@
         'layout-box',
         'layout-dark',
         'invoice',
-        'layout-rtl'
+        'layout-rtl',
     ]))
     <!-- Datetimepicker CSS -->
-    <link rel="stylesheet" href="{{ url('build/css/bootstrap-datetimepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/css/bootstrap-datetimepicker.min.css') }}">
 @endif
 
 
-@if (Route::is(['add-student', 'edit-student', 'add-teacher', 'edit-teacher', 'localization','add-invoice','add-staff','appointments-calendar','edit-invoice','edit-staff','invoice']))
+@if (Route::is([
+        'add-student',
+        'edit-student',
+        'add-teacher',
+        'edit-teacher',
+        'localization',
+        'add-invoice',
+        'add-staff',
+        'appointments-calendar',
+        'edit-invoice',
+        'edit-staff',
+        'invoice',
+    ]))
     <!-- Bootstrap Tagsinput CSS -->
-    <link rel="stylesheet" href="{{ url('build/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}">
 @endif
 
 @if (Route::is(['chat']))
     <!-- Mobile CSS-->
-    <link rel="stylesheet" href="{{ url('build/plugins/intltelinput/css/intlTelInput.css') }}">
-    <link rel="stylesheet" href="{{ url('build/plugins/intltelinput/css/demo.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/plugins/intltelinput/css/intlTelInput.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/plugins/intltelinput/css/demo.css') }}">
 @endif
 
-@if (Route::is(['chat','video-call']))
+@if (Route::is(['chat', 'video-call']))
     <!-- Fancybox -->
-    <link rel="stylesheet" href="{{ url('build/plugins/fancybox/jquery.fancybox.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/plugins/fancybox/jquery.fancybox.min.css') }}">
 
     <!-- Swiper CSS -->
-    <link rel="stylesheet" href="{{ url('build/plugins/swiper/swiper.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/plugins/swiper/swiper.min.css') }}">
 @endif
 
 <!-- Main CSS -->
-<link rel="stylesheet" href="{{ url('build/css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('build/css/style.css') }}">

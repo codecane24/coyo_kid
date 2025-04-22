@@ -2,13 +2,15 @@
 
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\Superadmin\PermissionController;
 
-Route::get('index', [CustomAuthController::class, 'dashboard']); 
+Route::get('index', [CustomAuthController::class, 'dashboard']);
 Route::get('login', [CustomAuthController::class, 'index'])->name('login');
-Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom'); 
+Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
 Route::get('register', [CustomAuthController::class, 'register'])->name('register-user');
-Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom'); 
+Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');
 Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 Route::get('login', [CustomAuthController::class, 'index'])->name('login');
 
@@ -181,19 +183,19 @@ Route::get('/chart-apex', function () {
 
 Route::get('/chart-c3', function () {
     return view('chart-c3');
-})->name('chart-c3');  
+})->name('chart-c3');
 
 Route::get('/chart-flot', function () {
     return view('chart-flot');
-})->name('chart-flot'); 
+})->name('chart-flot');
 
 Route::get('/chart-js', function () {
     return view('chart-js');
-})->name('chart-js');    
+})->name('chart-js');
 
 Route::get('/chart-morris', function () {
     return view('chart-morris');
-})->name('chart-morris'); 
+})->name('chart-morris');
 
 Route::get('/chart-peity', function () {
     return view('chart-peity');
@@ -1066,12 +1068,23 @@ Route::get('/layout-rtl', function () {
 
 
 
+// Our Routes
 
+Route::middleware([
+    'auth',
+    RoleMiddleware::class . ':Superadmin'
+])->prefix('superadmin')->name('superadmin.')->group(function () {
 
+    Route::get('/dashboard', function () {
+        return view('superadmin.dashboard');
+    })->name('dashboard');
 
-
-
-
+    // Permissions
+    Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions.index');
+    Route::get('/permissions/{permission}/edit', [PermissionController::class, 'edit'])->name('permissions.edit');
+    Route::put('/permissions/{permission}', [PermissionController::class, 'update'])->name('permissions.update');
+    Route::delete('/permissions/{permission}', [PermissionController::class, 'destroy'])->name('permissions.destroy');
+});
 
 
 
