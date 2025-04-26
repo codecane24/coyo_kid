@@ -1,5 +1,4 @@
 <?php $page = 'login'; ?>
-@extends('layout.mainlayout')
 @section('content')
 <div class="container-fuild">
     <div class="w-100 overflow-hidden position-relative flex-wrap d-block vh-100">
