@@ -25,11 +25,6 @@
                                     <i class="fas fa-plus-circle me-2"></i> Create New
                                 </a>
                             </li>
-                            <li>
-                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#importPermissionsModal">
-                                    <i class="fas fa-file-import me-2"></i> Import from File
-                                </a>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -126,7 +121,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="addPermissionForm" action="" method="POST">
+                    <form id="addPermissionForm" action="{{ route('superadmin.permissions.store') }}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label class="form-label">Permission Name</label>
@@ -136,7 +131,6 @@
                             <label class="form-label">Guard Name</label>
                             <select class="form-select" name="guard_name">
                                 <option value="web">Web</option>
-                                <option value="api">API</option>
                             </select>
                         </div>
                     </form>

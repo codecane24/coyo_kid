@@ -14,6 +14,17 @@ class PermissionController extends Controller
         return view('superadmin.permissions.index', compact('permissions'));
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|unique:permissions,name',
+        ]);
+
+        Permission::create(['name' => $request->name,'guard_name' => 'web']);
+
+        return redirect()->route('superadmin.permissions.index')->with('success', 'Permission created successfully.');
+    }
+
     public function edit(Permission $permission)
     {
         return view('superadmin.permissions.edit', compact('permission'));

@@ -309,7 +309,6 @@
                                         <img src="build/img/profiles/avatar-27.jpg" alt="img">
                                     </span>
                                     <div>
-                                        <h6 class="">{{ Auth::user()->name }}</h6>
                                         <p class="text-primary mb-0">Administrator</p>
                                     </div>
                                 </div>

@@ -35,7 +35,6 @@ class CustomAuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-
             // Check role
             if ($user->hasRole('Superadmin')) {
                 return redirect()->route('superadmin.dashboard')->withSuccess('Signed in as Superadmin');
