@@ -16,7 +16,7 @@ Route::get('login', [CustomAuthController::class, 'index'])->name('login');
 
 
 Route::get('/', function () {
-    return view('index');
+    return view('login');
 })->name('index');
 Route::get('/index', function () {
     return view('index');
