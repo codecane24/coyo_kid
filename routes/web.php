@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Superadmin\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\CustomAuthController;
@@ -16,7 +17,7 @@ Route::get('login', [CustomAuthController::class, 'index'])->name('login');
 
 
 Route::get('/', function () {
-    return view('login');
+    return redirect()->route('login');
 })->name('index');
 Route::get('/index', function () {
     return view('index');
@@ -1085,6 +1086,21 @@ Route::middleware([
     Route::get('/permissions/{permission}/edit', [PermissionController::class, 'edit'])->name('permissions.edit');
     Route::put('/permissions/{permission}', [PermissionController::class, 'update'])->name('permissions.update');
     Route::delete('/permissions/{permission}', [PermissionController::class, 'destroy'])->name('permissions.destroy');
+
+    // Users
+
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
+
+    Route::resource('roles', \App\Http\Controllers\Superadmin\RoleController::class)->except(['show', 'destroy']);
+
+    Route::resource('branches', \App\Http\Controllers\Superadmin\BranchController::class)->except(['show', 'create']);
+
 });
 
 

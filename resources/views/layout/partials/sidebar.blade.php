@@ -7,7 +7,7 @@
                 <li>
                     <a href="javascript:void(0);" class="d-flex align-items-center border bg-white rounded p-2 mb-4">
                         <img src="build/img/icons/global-img.svg" class="avatar avatar-md img-fluid rounded" alt="Profile">
-                    <span class="text-dark ms-2 fw-normal">Global International</span>
+                    <span class="text-dark ms-2 fw-normal">Branch Name Here</span>
                     </a>
                 </li>
             </ul>
@@ -29,14 +29,14 @@
                                 class="ti ti-layout-list"></i><span>User Management</span><span
                                 class="menu-arrow"></span></a>
                             <ul>
-                                <li><a class="{{ Request::is('chat') ? 'active' : '' }}"
-                                        href="{{ url('chat') }}">User List</a></li>
+                                <li><a class="{{ Request::is('user') ? 'active' : '' }}"
+                                        href="{{ route('superadmin.users.index') }}">User List</a></li>
                                 <li><a class="{{ Request::is('permission') ? 'active' : '' }}"
                                         href="{{ route('superadmin.permissions.index') }}">Permission List</a></li>
-                                <li><a class="{{ Request::is('calendar') ? 'active' : '' }}"
-                                        href="{{ url('calendar') }}">Role List</a></li>
-                                <li><a class="{{ Request::is('email') ? 'active' : '' }}"
-                                        href="{{ url('email') }}">Branch List</a></li>
+                                <li><a class="{{ Request::is('role') ? 'active' : '' }}"
+                                        href="{{ route('superadmin.roles.index') }}">Role List</a></li>
+                                <li><a class="{{ Request::is('branch') ? 'active' : '' }}"
+                                        href="{{ route('superadmin.branches.index') }}">Branch List</a></li>
                             </ul>
                         </li>
                     </ul>

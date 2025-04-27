@@ -3,7 +3,8 @@
 <script src="{{ asset('build/js/jquery-3.7.1.min.js') }}"></script>
 <!-- Bootstrap Core JS -->
 <script src="{{ asset('build/js/bootstrap.bundle.min.js') }}"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 @if (!Route::is(['ui-ribbon', 'call']))
 
     @if (Route::is([

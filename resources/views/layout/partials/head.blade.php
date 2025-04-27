@@ -1,5 +1,5 @@
 <!-- Favicon -->
-<link rel="shortcut icon" type="image/x-icon" href="{{ asset('build/img/favicon.png') }}">
+<link rel="shortcut icon" type="image/x-icon" href="{{ asset('logo/favicon.png') }}">
 
 <base href="/">
 @if (!Route::is(['layout-rtl']))
@@ -10,6 +10,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('build/css/bootstrap.rtl.min.css') }}">
 @endif
+
+<!-- Toastr CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
 @if (Route::is([
         'form-fileupload',
         'data-tables',
