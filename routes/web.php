@@ -1,6 +1,8 @@
 <?php
 
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\InquiryController;
 use App\Http\Controllers\Superadmin\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\RoleMiddleware;
@@ -1103,7 +1105,19 @@ Route::middleware([
 
 });
 
+Route::middleware([
+    'auth',
+    RoleMiddleware::class . ':Admin'
+])->prefix('admin')->name('admin.')->group(function () {
 
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('dashboard');
+
+});
+
+Route::get('new-inquiry', [InquiryController::class, 'create'])->name('inquiry.create');
+Route::post('new-inquiry', [InquiryController::class, 'store'])->name('inquiry.store');
 
 
 

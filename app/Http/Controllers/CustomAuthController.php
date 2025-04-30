@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Branch;
 use Illuminate\Http\Request;
 use Hash;
 use Session;
@@ -40,6 +41,14 @@ class CustomAuthController extends Controller
                 return redirect()->route('superadmin.dashboard')->withSuccess('Signed in as Superadmin');
             }
 
+            if($user->hasRole('Admin')) {
+                Session::put('branch_id', $user->branch_id);
+                $branch = Branch::find($user->branch_id);
+                Session::put('branch_name', $branch->branch_name);
+                Auth::user()->branch_name = $branch->branch_name;
+                Auth::user()->branch_id = $branch->id;
+                return redirect()->route('admin.dashboard')->withSuccess('Signed in as Admin');
+            }
             // You can add more role redirects here later like:
             // elseif ($user->hasRole('Admin')) { ... }
 
