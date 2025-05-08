@@ -53,7 +53,7 @@
                                     class="menu-arrow"></span></a>
                             <ul>
                                 <li><a class="{{ Request::is('inquiry') ? 'active' : '' }}"
-                                        href="{{ route('superadmin.users.index') }}">Inquiry List</a></li>
+                                        href="{{ route('admin.inquiries.index') }}">Inquiry List</a></li>
                             </ul>
                         </li>
                     </ul>

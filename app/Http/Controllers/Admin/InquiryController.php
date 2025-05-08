@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Inquiry;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Yajra\DataTables\Facades\DataTables;
+use Vinkla\Hashids\Facades\Hashids;
 
 class InquiryController extends Controller
 {
@@ -44,5 +46,51 @@ class InquiryController extends Controller
         Inquiry::create($validated);
 
         return redirect()->back()->with('success', 'Inquiry created successfully.');
+    }
+
+    public function edit($id)
+    {
+        $inquiry = Inquiry::findOrFail($id);
+        return view('admin.inquiry.edit', compact('inquiry'));
+    }
+
+    public function index(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = Inquiry::query();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('actions', function ($row) {
+                    $encodedId = Hashids::encode($row->id);
+                    $viewUrl = route('admin.inquiries.show', $encodedId);
+                    $deleteUrl = route('admin.inquiries.destroy', $encodedId);
+
+                    return '
+                        <a href="' . $viewUrl . '" class="btn btn-sm btn-info me-1">View</a>
+                        <form action="' . $deleteUrl . '" method="POST" style="display:inline-block;" class="delete-form">
+                            ' . csrf_field() . method_field('DELETE') . '
+                            <button type="submit" class="btn btn-sm btn-danger delete-btn" onclick="return confirm(\'Delete this inquiry?\')">
+                                Delete
+                            </button>
+                        </form>
+                    ';
+                })
+                ->rawColumns(['actions']) // Important for rendering HTML
+                ->make(true);
+        }
+
+        return view('admin.inquiry.index');
+
+    }
+
+    public function show($id)
+    {
+        $decodedId = Hashids::decode($id);
+        if (empty($decodedId)) {
+            return redirect()->back()->with('error', 'Invalid inquiry ID.');
+        }
+
+        $inquiry = Inquiry::findOrFail($decodedId[0]);
+        return view('admin.inquiry.show', compact('inquiry'));
     }
 }
