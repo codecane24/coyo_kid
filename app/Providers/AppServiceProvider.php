@@ -14,4 +14,12 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
+
+    /**
+     * Bootstrap any application services.
+     */
+    public function boot()
+    {
+        URL::forceRootUrl('http://127.0.0.1:8000/');
+    }
 }

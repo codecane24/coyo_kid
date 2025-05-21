@@ -65,8 +65,14 @@ class InquiryController extends Controller
                     $viewUrl = route('admin.inquiries.show', $encodedId);
                     $deleteUrl = route('admin.inquiries.destroy', $encodedId);
 
+                    // Follow-up URL (using the plain id here, but encode if needed)
+                    $followUpUrl = route('admin.followups.index', $row->id);
+
                     return '
                         <a href="' . $viewUrl . '" class="btn btn-sm btn-info me-1">View</a>
+                        <a href="' . $followUpUrl . '" class="btn btn-sm btn-primary me-1" title="Follow Ups">
+                            <i class="fas fa-clock"></i> Follow Ups
+                        </a>
                         <form action="' . $deleteUrl . '" method="POST" style="display:inline-block;" class="delete-form">
                             ' . csrf_field() . method_field('DELETE') . '
                             <button type="submit" class="btn btn-sm btn-danger delete-btn" onclick="return confirm(\'Delete this inquiry?\')">
@@ -75,13 +81,13 @@ class InquiryController extends Controller
                         </form>
                     ';
                 })
-                ->rawColumns(['actions']) // Important for rendering HTML
+                ->rawColumns(['actions'])
                 ->make(true);
         }
 
         return view('admin.inquiry.index');
-
     }
+
 
     public function show($id)
     {

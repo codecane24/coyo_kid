@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\Superadmin\PermissionController;
+use App\Http\Controllers\InquiryFollowUpController;
 
 Route::get('index', [CustomAuthController::class, 'dashboard']);
 Route::get('login', [CustomAuthController::class, 'index'])->name('login');
@@ -1116,6 +1117,9 @@ Route::middleware([
     Route::get('inquiries/{inquiry}/edit', [InquiryController::class, 'edit'])->name('inquiries.edit');
     Route::put('inquiries/{inquiry}', [InquiryController::class, 'update'])->name('inquiries.update');
     Route::delete('inquiries/{inquiry}', [InquiryController::class, 'destroy'])->name('inquiries.destroy');
+
+    Route::get('inquiries/{inquiry}/followups', [InquiryFollowUpController::class, 'index'])->name('followups.index');
+    Route::post('inquiries/{inquiry}/followups', [InquiryFollowUpController::class, 'store'])->name('followups.store');
 
 });
 
