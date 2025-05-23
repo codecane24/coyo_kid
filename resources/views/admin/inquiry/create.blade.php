@@ -175,6 +175,23 @@
                                         </span>
                                     @enderror
                                 </div>
+
+                                <div class="mb-3">
+                                    <label for="branch_id" class="form-label">BRANCH</label>
+                                    <select class="form-select @error('branch_id') is-invalid @enderror" id="branch_id" name="branch_id" required>
+                                        <option value="" selected disabled>Select Branch</option>
+                                        @foreach($branches as $branch)
+                                            <option value="{{ $branch->id }}" {{ old('branch_id') == $branch->id ? 'selected' : '' }}>
+                                                {{ $branch->branch_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('branch_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
 
                             <!-- PARENTS DETAILS -->

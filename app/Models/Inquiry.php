@@ -33,6 +33,7 @@ class Inquiry extends Model {
         'state',
         'pin_code',
         'referral_source',
+        'branch_id'
     ];
 
     /**

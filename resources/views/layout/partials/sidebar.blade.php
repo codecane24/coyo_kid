@@ -21,14 +21,14 @@
                     <h6 class="submenu-hdr"><span>Main</span></h6>
                     <ul>
                         <li class="submenu">
-
                             <a href="javascript:void(0);"
                                 class="{{ Request::is('/', 'index', 'teacher-dashboard', 'student-dashboard', 'parent-dashboard', 'activities') ? 'subdrop active' : '' }}"><i
                                     class="ti ti-layout-dashboard"></i><span>Dashboard</span><span
                                     class="menu-arrow"></span></a>
                         </li>
-                        <li class="submenu">
 
+                        @if(auth()->user()->hasRole('Superadmin'))
+                        <li class="submenu">
                             <a href="javascript:void(0);"
                                 class="{{ Request::is('chat', 'call', 'calendar', 'email', 'todo', 'notes', 'file-manager', 'video-call') ? 'subdrop active' : '' }}"><i
                                     class="ti ti-layout-list"></i><span>User Management</span><span
@@ -44,9 +44,23 @@
                                         href="{{ route('superadmin.branches.index') }}">Branch List</a></li>
                             </ul>
                         </li>
+                        @endif
 
+                        @if(auth()->user()->hasRole('Admin'))
                         <li class="submenu">
+                            <a href="javascript:void(0);"
+                                class="{{ Request::is('chat', 'call', 'calendar', 'email', 'todo', 'notes', 'file-manager', 'video-call') ? 'subdrop active' : '' }}"><i
+                                    class="ti ti-layout-list"></i><span>User Management</span><span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a class="{{ Request::is('user') ? 'active' : '' }}"
+                                        href="{{ route('admin.users.index') }}">Branch Users</a></li>
+                            </ul>
+                        </li>
+                        @endif
 
+                        @if(auth()->user()->hasAnyRole(['Admin', 'Superadmin']))
+                        <li class="submenu">
                             <a href="javascript:void(0);"
                                 class="{{ Request::is('inquiry') ? 'subdrop active' : '' }}"><i
                                     class="ti ti-layout-list"></i><span>Inquiry Management</span><span
@@ -56,6 +70,7 @@
                                         href="{{ route('admin.inquiries.index') }}">Inquiry List</a></li>
                             </ul>
                         </li>
+                        @endif
                     </ul>
                 </li>
             </ul>

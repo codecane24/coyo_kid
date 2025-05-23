@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Superadmin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -11,13 +11,15 @@ use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
 use App\Models\Branch;
 use Illuminate\Support\Facades\Auth;
+
 class UserController extends Controller
 {
     public function index(Request $request)
     {
+  
         if ($request->ajax()) {
             $data = User::with(['roles', 'branch'])->select('*')
-                ->where('branch_id', Auth::user()->branch_id);
+            ->where('branch_id', Auth::user()->branch_id);
 
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -33,8 +35,8 @@ class UserController extends Controller
                     })->implode(' ');
                 })
                 ->addColumn('actions', function($row){
-                    $editUrl = route('superadmin.users.edit', $row->id);
-                    $deleteUrl = route('superadmin.users.destroy', $row->id);
+                    $editUrl = route('admin.users.edit', $row->id);
+                    $deleteUrl = route('admin.users.destroy', $row->id);
 
                     return '
                         <div class="text-end">
@@ -68,7 +70,7 @@ class UserController extends Controller
 
         $roles = Role::all();
         $branches = Branch::all();
-        return view('superadmin.user.index', compact('roles', 'branches'));
+        return view('admin.user.index', compact('roles', 'branches'));
     }
 
     public function store(Request $request)

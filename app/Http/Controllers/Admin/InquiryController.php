@@ -5,16 +5,19 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Inquiry;
+use App\Models\Branch;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Yajra\DataTables\Facades\DataTables;
 use Vinkla\Hashids\Facades\Hashids;
+use Illuminate\Support\Facades\Auth;
 
 class InquiryController extends Controller
 {
     public function create()
     {
-        return view('admin.inquiry.create');
+        $branches = Branch::all();
+        return view('admin.inquiry.create', compact('branches'));
     }
 
     public function store(Request $request)
@@ -41,6 +44,7 @@ class InquiryController extends Controller
             'pin_code' => 'required|string|max:20',
             'referral_source' => 'required|array',
             'referral_source.*' => 'in:newspaper,banners,reference,social_media,tv_ad,other',
+            'branch_id' => 'required|exists:branches,id',
         ]);
 
         Inquiry::create($validated);
@@ -57,15 +61,15 @@ class InquiryController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Inquiry::query();
+            $data = Inquiry::query()
+                ->where('branch_id', Auth::user()->branch_id);
+            
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('actions', function ($row) {
                     $encodedId = Hashids::encode($row->id);
                     $viewUrl = route('admin.inquiries.show', $encodedId);
                     $deleteUrl = route('admin.inquiries.destroy', $encodedId);
-
-                    // Follow-up URL (using the plain id here, but encode if needed)
                     $followUpUrl = route('admin.followups.index', $row->id);
 
                     return '
